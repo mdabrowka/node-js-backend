@@ -1,9 +1,11 @@
 var express = require('express');
+var server = express();
 var bodyParser = require('body-parser');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 server.use(express.json());
+
 server.use(express.static('public'));
 
 server.get('/', (req, res) => {
@@ -31,4 +33,9 @@ server.post('/api/subscribe', urlencodedParser, (req, res) => {
   emails.push(email);
   res.send(email);
 });
+
+const port = process.env.PORT || 5000;
+
+server.listen(port, function() {
+  console.log(`App running on port ${port}`);
 });
