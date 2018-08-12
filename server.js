@@ -20,7 +20,7 @@ server.get('/api/get-questions', (req, res) => {
 const emails = [];
 
 server.post('/api/subscribe', urlencodedParser, (req, res) => {
-  if (!req.body.email || req.body.name.length < 5 ) {
+  if (!req.body.email || req.body.email.length < 5 ) {
       res.status(400).send('Email is required and should be minimum 5 characters');
       return;
     }
