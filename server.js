@@ -16,7 +16,19 @@ server.get('/api/get-questions', (req, res) => {
   res.send(questions);
 });
 
+const emails = [];
 
-app.listen(3000, function () {
-  console.log('App running on port ' + this.address().port);
+server.post('/api/subscribe', urlencodedParser, (req, res) => {
+  if (!req.body.email || req.body.name.length < 5 ) {
+      res.status(400).send('Email is required and should be minimum 5 characters');
+      return;
+    }
+  console.log('logging request body', req.body);
+  const email = {
+    id: emails.length + 1,
+    email: req.body.email
+  };
+  emails.push(email);
+  res.send(email);
+});
 });
