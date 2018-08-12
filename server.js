@@ -1,8 +1,9 @@
 var express = require('express');
-var app = express();
+var bodyParser = require('body-parser');
 
-app.use(express.static('public'));
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+server.use(express.json());
 server.use(express.static('public'));
 
 server.get('/', (req, res) => {
