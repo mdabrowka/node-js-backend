@@ -30,7 +30,7 @@ server.post('/api/subscribe', urlencodedParser, (req, res) => {
     email: req.body.email
   };
   emails.push(email);
-  res.send(email);
+  res.send(`Your email ${email.email} has been added to our database.`);
 });
 
 const port = process.env.PORT || 5000;
