@@ -1,6 +1,7 @@
 var express = require('express');
 var server = express();
 var bodyParser = require('body-parser');
+AWS = require('aws-sdk')
 const questions = require('./models/questions')
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -9,6 +10,7 @@ server.use(express.json());
 
 server.use(express.static('public'));
 
+dynamoDb = new AWS.DynamoDB.DocumentClient();
 server.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
